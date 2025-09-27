@@ -59,7 +59,7 @@ export const createCheckoutSession = async (req, res) => {
     // Save the purchase record
     newPurchase.paymentId = session.id;
     // newPurchase.status="completed";
-    // const user=await User.findById(userId);
+    // const user=await User.findById(userId); 
     // user.enrolledCourses.push(courseId);
     // await user.save();
     await newPurchase.save();
