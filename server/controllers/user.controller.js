@@ -73,18 +73,27 @@ export const login = async (req,res) => {
         })
     }
 }
-export const logout = async (_,res) => {
+export const logout = async (_, res) => {
     try {
-        return res.status(200).cookie("token", "", {maxAge:0}).json({
-            message:"Logged out successfully.",
-            success:true
-        })
+        // Define the cookie options, matching the login options
+        const cookieOptions = {
+            httpOnly: true,
+            sameSite: "none",
+            secure: true
+        };
+
+        // Clear the cookie by setting its value to empty and expiring it
+        return res.status(200).cookie("token", "", { ...cookieOptions, maxAge: 0 }).json({
+            message: "Logged out successfully.",
+            success: true
+        });
+        
     } catch (error) {
         console.log(error);
         return res.status(500).json({
-            success:false,
-            message:"Failed to logout"
-        }) 
+            success: false,
+            message: "Failed to logout"
+        });
     }
 }
 export const getUserProfile = async (req,res) => {

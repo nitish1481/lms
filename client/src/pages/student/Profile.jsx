@@ -51,6 +51,7 @@ const Profile = () => {
   };
 
   useEffect(() => {
+    console.log("fetching user data");
     refetch();
   }, []);
 
